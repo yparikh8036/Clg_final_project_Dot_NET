@@ -14,6 +14,7 @@ namespace Final_Year.Controllers
         // GET: Partner
         public ActionResult AdminHome()
         {
+
             return View();
         }
         public ActionResult EmployeeNew()
