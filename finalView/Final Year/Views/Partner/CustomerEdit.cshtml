@@ -1,0 +1,124 @@
+﻿@model Final_Year.Models.Customer
+
+<div class="col-md-10">
+
+    <div class="row">
+        <div class="col-md-10">
+            <div class="content-box-large">
+                <div class="panel-heading">
+                    <div class="panel-title">CustomerEdit</div>
+                </div>
+                <div class="panel-body">
+                    <form class="form-horizontal" role="form" method="post" action="CustomerEditSubmit">
+                        <div class="form-group">
+                            <label for="Id" class="col-sm-2 control-label">Customer Id</label>
+                            <div class="col-sm-10">
+                                <input type="number" class="form-control" id="CustomerId" placeholder="CustomerId" name="CustomerId" value=@Model.CustomerID readonly>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="Name" class="col-sm-2 control-label">Name</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="Name" placeholder="Name" name="Name" value=@Model.Name>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="Email" class="col-sm-2 control-label">Email</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="Email" placeholder="Email" name="Email" value=@Model.Email>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="Mobile" class="col-sm-2 control-label">Mobile</label>
+                            <div class="col-sm-10">
+                                <input type="number" class="form-control" id="Mobile" placeholder="Mobile" name="Mobile" value=@Model.Mobile>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="Address" class="col-sm-2 control-label">Address</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="Address" placeholder="Address" name="Address" value=@Model.Address>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="Username" class="col-sm-2 control-label">Username</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="Username" placeholder="Username" name="Username" value=@Model.Username>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="Password" class="col-sm-2 control-label">Password</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="Password" placeholder="Password" name="Password" value=@Model.Password>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-2 control-label">IsActive</label>
+                            <div class="col-md-10">
+                                <label class="checkbox-inline">
+                                    <input type="checkbox" name="IsActive" value="1" @((Model.IsActive == true) ? "checked=checked" : "")>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="AccName" class="col-sm-2 control-label">Accountant Name</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="AccName" placeholder="Accountant Name" name="AccName" value=@Model.AccName>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="AccUsername" class="col-sm-2 control-label">Accountant Username</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="AccUsername" placeholder="Accountant Username" name="AccUsername" value=@Model.AccUsername>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="AccPassword" class="col-sm-2 control-label">Accountant Password</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="AccPassword" placeholder="Accountant Password" name="AccPassword" value=@Model.AccPassword>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="DateofBirth" class="col-sm-2 control-label">Date of Birth</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="DOB" placeholder="DateOFBirth" name="DOB" value=@Model.DOB>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="PAN" class="col-sm-2 control-label">PAN</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="PAN" placeholder="PAN" name="PAN" value=@Model.PAN>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="GSTIN" class="col-sm-2 control-label">GSTIN</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="GSTIN" placeholder="GSTIN" name="GSTIN" value=@Model.GSTIN>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="EmployeeID" class="col-sm-2 control-label">EmployeeID</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="EmployeeID" placeholder="EmployeeID" name="EmployeeID" value=@Model.EmployeeID>
+                            </div>
+                        </div>
+
+             
+
+
+                            <div class="form-group">
+                                <div class="col-sm-offset-2 col-sm-10">
+                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                </div>
+                            </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
