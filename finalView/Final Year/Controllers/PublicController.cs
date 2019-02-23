@@ -31,11 +31,11 @@ namespace Final_Year.Controllers
                     return RedirectToAction("AdminHome", "Partner");
                 }else if (e.EmployeeRole.Equals("Manager"))
                 {
-                    return RedirectToAction("ManagerHome");
+                    return RedirectToAction("ManagerHome","Manager");
                 }
                 else
                 {
-                    return RedirectToAction("EmployeeHome");
+                    return RedirectToAction("StaffHome","Staff");
                 }
             }
             else
@@ -51,8 +51,9 @@ namespace Final_Year.Controllers
                     return RedirectToAction("Login");
                 }
             }
-            
+               
         }
-        
+       
+
     }
 }

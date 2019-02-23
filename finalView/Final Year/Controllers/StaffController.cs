@@ -9,7 +9,7 @@ namespace Final_Year.Controllers
     public class StaffController : Controller
     {
         // GET: Staff
-        public ActionResult Index()
+        public ActionResult StaffHome()
         {
             return View();
         }

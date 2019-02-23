@@ -17,31 +17,32 @@
                             <th>Active</th>
                             <th>Role</th>
                             <th>Photo</th>
-                            <th>Edit</th>
-                            <th>Delete</th>
+                       
                         </tr>
                     </thead>
                     <tbody>
                         @for (int i = 0; i < Model.Rows.Count; i++)
                            {
-                        <tr>
-                            <td>@Model.Rows[i]["EmployeeID"]</td>
-                            <td>@Model.Rows[i]["Name"]</td>
-                            <td>@Model.Rows[i]["Email"]</td>
-                            <td>@Model.Rows[i]["Mobile"]</td>
-                            <td>@Model.Rows[i]["Address"]</td>
-                            <td>@Model.Rows[i]["Username"]</td>
-                            <td>@Model.Rows[i]["Password"]</td>
-                            <td>@Model.Rows[i]["IsActive"]</td>
-                            <td>@Model.Rows[i]["EmployeeRole"]</td>
-                            <td>@Model.Rows[i]["Photo"]</td>
-                            <td>
-                                <a href="/Partner/EmployeeEdit?Id=@Model.Rows[i]["EmployeeID"]">Edit</a>
-                            </td>
-                            <td>
-                                <a href="/Partner/EmployeeDelete?Id=@Model.Rows[i]["EmployeeID"]">Delete</a>
-                            </td>
-                        </tr>
+						<tr>
+							<td>@Model.Rows[i]["EmployeeID"]</td>
+							<td>@Model.Rows[i]["Name"]</td>
+							<td>@Model.Rows[i]["Email"]</td>
+							<td>@Model.Rows[i]["Mobile"]</td>
+							<td>@Model.Rows[i]["Address"]</td>
+							<td>@Model.Rows[i]["Username"]</td>
+							<td>@Model.Rows[i]["Password"]</td>
+							<td>@Model.Rows[i]["IsActive"]</td>
+							<td>@Model.Rows[i]["EmployeeRole"]</td>
+							<td>@Model.Rows[i]["Photo"]</td>
+							<td>
+								<div class="row">
+									<a class="glyphicon glyphicon-pencil" data-toggle="tooltip" title="Edit"href="/Partner/EmployeeEdit?Id=@Model.Rows[i]["EmployeeID"]">
+									</a>
+									<a class="glyphicon glyphicon-trash" data-toggle="tooltip" title="Delete" href="/Partner/EmployeeDelete?Id=@Model.Rows[i]["EmployeeID"]">
+									</a>
+								</div>
+							</td>
+						</tr>
                        }
                     </tbody>
                 </table>

@@ -1,0 +1,95 @@
+﻿@model Final_Year.Models.Employee
+
+<div class="col-md-10">
+
+	<div class="row">
+		<div class="col-md-12">
+			<div class="content-box-large">
+				<div class="panel-heading">
+					<div class="panel-title">EmployeeProfile</div>
+					<div>
+						<a class="glyphicon glyphicon-pencil" data-toggle="tooltip" title="Edit" href="/Partner/EmployeeEdit?Id=@Model.EmployeeID">
+						</a>
+					</div>
+				</div>
+				<div class="panel-body">
+					<form class="form-horizontal" role="form" method="post" action="EmployeeEditSubmit">
+						<div class="col-md-12">
+							<div class="col-md-9">
+								<div class="form-group">
+									<label for="Id" class="col-sm-2 control-label">EmployeeId</label>
+									<div class="col-sm-2">
+										<input type="number" class="form-control" id="Id" placeholder="Id" name="Id" value=@Model.EmployeeID readonly>
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="Name" class="col-sm-2 control-label">Name</label>
+									<div class="col-sm-7">
+										<input type="text" class="form-control" id="Name" placeholder="Name" name="Name" value=@Model.Name readonly>
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="Email" class="col-sm-2 control-label">Email</label>
+									<div class="col-sm-7">
+										<input type="text" class="form-control" id="Email" placeholder="Email" name="Email" value=@Model.Email readonly>
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="Mobile" class="col-sm-2 control-label">Mobile</label>
+									<div class="col-sm-7">
+										<input type="number" class="form-control" id="Mobile" placeholder="Mobile" name="Mobile" value=@Model.Mobile readonly>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-2">		
+								<label class="col-sm-2 panel-title">ProfilePicture</label>
+								<img  style="border:thick" class="img-rounded" src="~/UserProfilePicture/1404446425806.jpg" alt="yash" height="170px" width="150px" />
+								
+							</div>
+							</div>
+						<div class="col-md-12">
+							<div class="col-md-9">
+								<div class="form-group">
+									<label for="Address" class="col-sm-2 control-label">Address</label>
+									<div class="col-sm-7">
+										<input type="text" class="form-control" id="Address" placeholder="Address" name="Address" value=@Model.Address readonly>
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="Username" class="col-sm-2 control-label">Username</label>
+									<div class="col-sm-7">
+										<input type="text" class="form-control" id="Username" placeholder="Username" name="Username" value=@Model.Username readonly>
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="Password" class="col-sm-2 control-label">Password</label>
+									<div class="col-sm-7">
+										<input type="text" class="form-control" id="Password" placeholder="Password" name="Password" value=@Model.Password readonly>
+									</div>
+								</div>
+
+								<div class="form-group">
+									<label class="control-label col-md-2">EmployeeRole</label>
+									<div class="col-md-4">
+										<select class="form-control input-sm" name="EmployeeRole" readonly>
+											<option value="Partner" @((Model.EmployeeRole == "Partner") ? "selected=selected" : "")>Partner</option>
+											<option value="Manager" @((Model.EmployeeRole == "Manager") ? "selected=selected" : "")>Manager</option>
+											<option value="Staff" @((Model.EmployeeRole == "Staff") ? "selected=selected" : "")>Staff</option>
+											<option value="Client" @((Model.EmployeeRole == "Client") ? "selected=selected" : "")>Client</option>
+										</select>
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="Name" class="col-sm-2 control-label">Photo</label>
+									<div class="col-sm-7">
+										<input type="text" class="form-control" id="Photo" placeholder="Photo" name="Photo" value=@Model.Photo readonly>
+									</div>
+								</div>
+							</div>
+							</div>
+						</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
