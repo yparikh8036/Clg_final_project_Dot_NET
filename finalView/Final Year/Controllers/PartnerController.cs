@@ -33,6 +33,18 @@ namespace Final_Year.Controllers
             e.Username = Request.Params["Username"];
             e.Password = Request.Params["Password"];
             e.IsActive = (Request.Params["IsActive"] == "1");
+
+            // if (Request.Files["Photo"].ContentLength > 0)
+            //{
+            //     string filename = DateTime.Now.Ticks.ToString() + "_" + Request.Files["Photo"].FileName;
+            //     string PhysicalFileName = Server.MapPath("~/UserProfilePicture/" + filename);
+            //     Request.Files["Photo"].SaveAs(PhysicalFileName);
+            //     e.Photo = filename;
+            // }
+            // else
+            // {
+            //     e.Photo = "";
+            //}
             e.Photo = Request.Params["Photo"];
             EmployeeLogic.Insert(e);
             return RedirectToAction("EmployeeList");
@@ -43,9 +55,8 @@ namespace Final_Year.Controllers
               return View(dt);
         }
         public ActionResult EmployeeEdit()
-        {
-             
-            Employee e= EmployeeLogic.SelectByPK(Convert.ToInt32(Request.Params["Id"]));
+        {  
+           Employee e= EmployeeLogic.SelectByPK(Convert.ToInt32(Request.Params["Id"]));
            return View(e);
         }
         [HttpPost]
@@ -141,6 +152,12 @@ namespace Final_Year.Controllers
             ViewBag.dtCSL = dtCSL;
             return RedirectToAction("CustomerEdit", dtCSL);
         }
-        
+
+        public ActionResult EmployeeProfile()
+        {
+            Employee e1 =(Employee)Session["Employee"];
+            Employee e = EmployeeLogic.SelectByPK(e1.EmployeeID);
+            return View(e);
+        }
     }
 }

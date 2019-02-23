@@ -6,10 +6,10 @@ using System.Web.Mvc;
 
 namespace Final_Year.Controllers
 {
-    public class ManagersController : Controller
+    public class ManagerController : Controller
     {
         // GET: Managers
-        public ActionResult Index()
+        public ActionResult ManagerHome()
         {
             return View();
         }
