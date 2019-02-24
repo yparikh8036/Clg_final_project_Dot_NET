@@ -56,7 +56,7 @@ namespace Final_Year.BusinessLogic
         {
             string query = "SELECT * FROM Employee WHERE EmployeeID = @ID";
             List<SqlParameter> parameters = new List<SqlParameter>();
-            parameters.Add(new SqlParameter("@ID", ID));
+            parameters.Add(new SqlParameter("ID", ID));
             DataTable dt = DBHelper.SelectData(query, parameters);
 
             Employee e = new Employee();
