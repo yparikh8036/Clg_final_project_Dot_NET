@@ -13,13 +13,13 @@ namespace Final_Year.BusinessLogic
     {
         public static int Insert(Service c)
         {
-            String query = "Inseert into Service values(@Sname,@Description,@Requirements,@Documents,@EmployeeID)";
+            String query = "Insert into Service values(@Sname,@Description,@Requirements,@Documents,@EmployeeID)";
             List<SqlParameter> parameters = new List<SqlParameter>();
-            parameters.Add(new SqlParameter("@Sname",c.Sname));
-            parameters.Add(new SqlParameter("@Description",c.Description));
-            parameters.Add(new SqlParameter("@Requirements",c.Requirements));
-            parameters.Add(new SqlParameter("@Documents",c.Documents));
-            parameters.Add(new SqlParameter("@EmployeeID",c.EmployeeID));
+            parameters.Add(new SqlParameter("Sname",c.Sname));
+            parameters.Add(new SqlParameter("Description",c.Description));
+            parameters.Add(new SqlParameter("Requirements",c.Requirements));
+            parameters.Add(new SqlParameter("Documents",c.Documents));
+            parameters.Add(new SqlParameter("EmployeeID",c.EmployeeID));
 
             return DBHelper.ModifyData(query, parameters);
         }

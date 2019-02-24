@@ -56,13 +56,13 @@ namespace Final_Year.Controllers
         }
         public ActionResult EmployeeEdit()
         {  
-           Employee e= EmployeeLogic.SelectByPK(Convert.ToInt32(Request.Params["Id"]));
+           Employee e= EmployeeLogic.SelectByPK(Convert.ToInt32(Request.Params["EmployeeID"]));
            return View(e);
         }
         [HttpPost]
         public ActionResult EmployeeEditSubmit()
         {
-            Employee e = EmployeeLogic.SelectByPK(Convert.ToInt32(Request.Params["Id"]));
+            Employee e = EmployeeLogic.SelectByPK(Convert.ToInt32(Request.Params["EmployeeID"]));
             e.Name = Request.Params["Name"];
             e.Email = Request.Params["Email"];
             e.Mobile = Request.Params["Mobile"];
@@ -78,7 +78,7 @@ namespace Final_Year.Controllers
        
         public ActionResult EmployeeDelete()
         {
-            int Id =Convert.ToInt32(Request.Params["Id"]);
+            int Id =Convert.ToInt32(Request.Params["EmployeeID"]);
             EmployeeLogic.Delete(Id);
             return RedirectToAction("EmployeeList");
         }
@@ -119,7 +119,7 @@ namespace Final_Year.Controllers
         }
         public ActionResult CustomerEditSubmit()
         {
-            Customer c = new Customer();
+            Customer c = CustomerLogic.SelectByPK(Convert.ToInt32(Request.Params["CustomerID"]));
             c.Name = Request.Params["Name"];
             c.Email = Request.Params["Email"];
             c.Mobile = Request.Params["Mobile"];
@@ -158,6 +158,50 @@ namespace Final_Year.Controllers
             Employee e1 =(Employee)Session["Employee"];
             Employee e = EmployeeLogic.SelectByPK(e1.EmployeeID);
             return View(e);
+        }
+
+        public ActionResult ServiceNew()
+        {  
+            return View();
+        }
+        public ActionResult ServiceNewSubmit()
+        {
+            Service s = new Service();
+            s.Sname = Request.Params["Sname"];
+            s.Description = Request.Params["Description"];
+            s.Requirements = Request.Params["Requirements"];
+            s.Documents = Request.Params["Documents"];
+            s.EmployeeID = Convert.ToInt32(Request.Params["EmployeeID"]);
+            ServiceLogic.Insert(s);
+            return RedirectToAction("ServiceList");
+        }
+        public ActionResult ServiceList()
+        {
+            DataTable dt = ServiceLogic.SelectALL();
+            return View(dt);
+        }
+        public ActionResult ServiceEdit()
+        {
+            Service s = ServiceLogic.SelectByPK(Convert.ToInt32(Request.Params["ServiceID"]));
+            return View(s);
+        }
+        public ActionResult ServiceEditSubmit()
+        {
+            Service c = ServiceLogic.SelectByPK(Convert.ToInt32(Request.Params["ServiceID"]));
+            c.Sname = Request.Params["Sname"];
+            c.Description = Request.Params["Description"];
+            c.Documents = Request.Params["Documents"];
+            c.Requirements = Request.Params["Requirements"]; 
+            c.EmployeeID = Convert.ToInt32(Request.Params["EmployeeID"]);
+
+            ServiceLogic.Update(c);
+            return RedirectToAction("ServiceList");
+        }
+        public ActionResult ServiceDelete()
+        {
+            int ServiceId = Convert.ToInt32(Request.Params["ServiceID"]);
+            ServiceLogic.Delete(ServiceId);
+            return RedirectToAction("ServiceList");
         }
     }
 }
