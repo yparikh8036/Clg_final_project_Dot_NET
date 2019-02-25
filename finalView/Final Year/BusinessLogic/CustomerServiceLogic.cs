@@ -64,11 +64,11 @@ namespace Final_Year.BusinessLogic
             List<SqlParameter> parameters = new List<SqlParameter>();
             return DBHelper.SelectData(query, parameters);
         }
-        public static DataTable CustomerServiceList(int CustomerID)
+        public static DataTable CustomerServiceList()
         {
-            String query = "Select cs.ServiceID,cs.StartDate,cs.EndDate,s.Sname from CustomerService cs Inner Join Customer c where cs.CustomerID=c.CustomerID Inner Join Service s on cs.ServiceID=s.ServiceID where cs.Customerid=@CustomerID";
+            String query = "Select cs.CustomerServiceID,cs.StartDate,cs.EndDate,s.Sname,c.Name,cs.CustomerID from CustomerService cs inner Join Customer c on cs.CustomerID=c.CustomerID inner Join Service s on cs.ServiceID=s.ServiceID";
             List<SqlParameter> parameters = new List<SqlParameter>();
-            parameters.Add(new SqlParameter("@CustomerID", CustomerID));
+            // parameters.Add(new SqlParameter("@CustomerID", CustomerID));
             DataTable dt = DBHelper.SelectData(query, parameters);
             //CustomerService cs = new CustomerService();
             //cs.CustomerServiceID = Convert.ToInt32(dt.Rows[0]["CustomerServiceID"]);
@@ -77,6 +77,24 @@ namespace Final_Year.BusinessLogic
             //cs.StartDate = Convert.ToDateTime(dt.Rows[0]["StartDate"].ToString());
             //cs.EndDate = Convert.ToDateTime(dt.Rows[0]["EndDate"].ToString());
 
+            return dt;
+        }
+
+        public static DataTable CustomerServiceByPKAndCustID(int CustomerID,int CustomerServiceID)
+        {
+            String query = "Select cs.CustomerServiceID,cs.StartDate,cs.EndDate,s.Sname,c.Name,cs.ServiceID,cs.CustomerID from CustomerService cs left Join Customer c on cs.CustomerID=c.CustomerID left Join Service s on cs.ServiceID=s.ServiceID where cs.CustomerID=@CustomerID and cs.CustomerServiceID=@CustomerServiceID";
+            List<SqlParameter> parameters = new List<SqlParameter>();
+            parameters.Add(new SqlParameter("CustomerID", CustomerID));
+            parameters.Add(new SqlParameter("CustomerServiceID", CustomerServiceID));
+            DataTable dt = DBHelper.SelectData(query, parameters);
+            return dt;
+        }
+        public static DataTable CustomerServiceByCustID(int CustomerID)
+        {
+            String query = "Select cs.CustomerServiceID,cs.StartDate,cs.EndDate,s.Sname,c.Name from CustomerService cs inner Join Customer c on cs.CustomerID=c.CustomerID inner Join Service s on cs.ServiceID=s.ServiceID where cs.CustomerID=@CustomerID";
+            List<SqlParameter> parameters = new List<SqlParameter>();
+            parameters.Add(new SqlParameter("CustomerID", CustomerID));
+            DataTable dt = DBHelper.SelectData(query, parameters);
             return dt;
         }
     }

@@ -1,0 +1,57 @@
+﻿
+<div class="col-md-10">
+
+    <div class="row">
+        <div class="col-md-10">
+            <div class="content-box-large">
+                <div class="panel-heading">
+                    <div class="panel-title">CustomerServiceEdit</div>
+                </div>
+                <div class="panel-body">
+                    <form class="form-horizontal" role="form" method="post" action="CustomerServiceEditSubmit">
+
+                        <div class="form-group">
+                            <label for="CustomerServiceID" class="col-sm-2 control-label">CustomerServiceID</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="CustomerServiceID" placeholder="CustomerServiceID" name="CustomerServiceID" readonly value=@Model.Rows[0]["CustomerServiceID"]>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="CustomerName" class="col-sm-2 control-label">CustomerName</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="CustomerName" placeholder="CustomerName" name="CustomerName" readonly value=@Model.Rows[0]["Name"]>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="ServiceName" class="col-sm-2 control-label">ServiceName</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="ServiceName" placeholder="ServiceName" name="ServiceName" readonly value=@Model.Rows[0]["Sname"]>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="StartDate" class="col-sm-2 control-label">StartDate</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="StartDate" placeholder="StartDate" name="StartDate" required value=@Model.Rows[0]["StartDate"]>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="EndDate" class="col-sm-2 control-label">EndDate</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="EndDate" placeholder="EndDate" name="EndDate" required value=@Model.Rows[0]["EndDate"]>
+                            </div>
+                        </div>
+                        <input type="hidden" name="ServiceID" value="@Model.Rows[0]["ServiceID"]" />
+                        <input type="hidden" name="CustomerID" value="@Model.Rows[0]["CustomerID"]" />
+                        <div class="form-group">
+                            <div class="col-sm-offset-2 col-sm-10">
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
