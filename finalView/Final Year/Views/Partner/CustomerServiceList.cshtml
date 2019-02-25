@@ -1,0 +1,46 @@
+﻿
+@{
+    Layout = "~/Views/Shared/_LayoutAdminHomePageWithToggleNavBar.cshtml";
+}
+
+<div class="col-md-12">
+    <div class="content-box-large">
+        <div class="panel-heading">
+            <div class="panel-title">CustomerServiceList</div>
+        </div>
+        <div class="panel-body">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>CustomerServiceID</th>
+                        <th>CustomerName</th>
+                        <th>ServiceName</th>
+                        <th>StartDate</th>
+                        <th>EndDate</th>
+                        
+                    </tr>
+                </thead>
+                <tbody>
+                    @for (int i = 0; i < Model.Rows.Count; i++)
+                    {
+                    <tr>
+                        <td>@Model.Rows[i]["CustomerServiceID"]</td>
+                        <td>@Model.Rows[i]["Name"]</td>
+                        <td>@Model.Rows[i]["Sname"]</td>
+                        <td>@Model.Rows[i]["StartDate"]</td>
+                        <td>@Model.Rows[i]["EndDate"]</td>
+                        <td>
+                            <div class="row">
+                                <a class="glyphicon glyphicon-pencil" data-toggle="tooltip" title="Edit" href="/Partner/CustomerServiceEdit?CustomerServiceID=@Model.Rows[i]["CustomerServiceID"]&CustomerID=@Model.Rows[i]["CustomerID"]">
+                                </a>
+                                <a class="glyphicon glyphicon-trash" data-toggle="tooltip" title="Delete" href="/Partner/CustomerServiceDelete?CustomerServiceID=@Model.Rows[i]["CustomerServiceID"]">
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

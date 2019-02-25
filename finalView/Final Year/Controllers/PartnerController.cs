@@ -115,8 +115,11 @@ namespace Final_Year.Controllers
         public ActionResult CustomerEdit()
         {
             Customer c = CustomerLogic.SelectByPK(Convert.ToInt32(Request.Params["CustomerID"]));
+            DataTable dt = CustomerServiceLogic.CustomerServiceByCustID(Convert.ToInt32(Request.Params["CustomerID"]));
+            ViewBag.customerService = dt;
             return View(c);
         }
+        [HttpPost]
         public ActionResult CustomerEditSubmit()
         {
             Customer c = CustomerLogic.SelectByPK(Convert.ToInt32(Request.Params["CustomerID"]));
@@ -146,13 +149,6 @@ namespace Final_Year.Controllers
             return RedirectToAction("CustomerList");
         }
 
-        public ActionResult GetCustomerServiceList()
-        {
-            DataTable dtCSL = CustomerServiceLogic.CustomerServiceList(Convert.ToInt32(Request.Params["CustomerID"]));
-            ViewBag.dtCSL = dtCSL;
-            return RedirectToAction("CustomerEdit", dtCSL);
-        }
-
         public ActionResult EmployeeProfile()
         {
             Employee e1 =(Employee)Session["Employee"];
@@ -164,6 +160,7 @@ namespace Final_Year.Controllers
         {  
             return View();
         }
+        [HttpPost]
         public ActionResult ServiceNewSubmit()
         {
             Service s = new Service();
@@ -185,6 +182,7 @@ namespace Final_Year.Controllers
             Service s = ServiceLogic.SelectByPK(Convert.ToInt32(Request.Params["ServiceID"]));
             return View(s);
         }
+        [HttpPost]
         public ActionResult ServiceEditSubmit()
         {
             Service c = ServiceLogic.SelectByPK(Convert.ToInt32(Request.Params["ServiceID"]));
@@ -202,6 +200,65 @@ namespace Final_Year.Controllers
             int ServiceId = Convert.ToInt32(Request.Params["ServiceID"]);
             ServiceLogic.Delete(ServiceId);
             return RedirectToAction("ServiceList");
+        }
+
+        //public ActionResult GetCustomerServiceList()
+        //{
+        //    DataTable dtCSL = CustomerServiceLogic.CustomerServiceList(Convert.ToInt32(Request.Params["CustomerID"]));
+        //    ViewBag.dtCSL = dtCSL;
+        //    return RedirectToAction("CustomerEdit", dtCSL);
+        //}
+
+        public ActionResult CustomerServiceNew()
+        {
+            DataTable dt1 = CustomerLogic.SelectALL();
+            DataTable dt2 = ServiceLogic.SelectALL();
+
+            ViewBag.customerDt = dt1;
+            ViewBag.serviceDt = dt2;
+            return View();
+        }
+        [HttpPost]
+        public ActionResult CustomerServiceNewSubmit()
+        {
+            CustomerService cs = new CustomerService();
+            cs.CustomerID = Convert.ToInt32(Request.Params["CustomerID"]);
+            cs.ServiceID = Convert.ToInt32(Request.Params["ServiceID"]);
+            cs.StartDate = Convert.ToDateTime(Request.Params["StartDate"]);
+            cs.EndDate = Convert.ToDateTime(Request.Params["EndDate"]);
+            CustomerServiceLogic.Insert(cs);
+            return RedirectToAction("CustomerServiceList");
+        }
+        public ActionResult CustomerServiceList()
+        {
+            DataTable dtCSL = CustomerServiceLogic.CustomerServiceList();
+            return View(dtCSL);
+        }
+      
+        public ActionResult CustomerServiceDelete()
+        {
+            int CustomerServiceID = Convert.ToInt32(Request.Params["CustomerServiceID"]);
+            CustomerServiceLogic.Delete(CustomerServiceID);
+            return RedirectToAction("CustomerServiceList");
+        }
+        public ActionResult CustomerServiceEdit()
+        {
+            DataTable dt= CustomerServiceLogic.CustomerServiceByPKAndCustID(Convert.ToInt32(Request.Params["CustomerID"]), Convert.ToInt32(Request.Params["CustomerServiceID"]));
+            return View(dt);
+        }
+        public ActionResult CustomerServiceEditSubmit()
+        {
+            CustomerService cs = new CustomerService();
+            cs.CustomerServiceID = Convert.ToInt32(Request.Params["CustomerServiceID"]);
+            cs.CustomerID = Convert.ToInt32(Request.Params["CustomerID"]);
+            cs.ServiceID = Convert.ToInt32(Request.Params["ServiceID"]);
+            cs.StartDate = Convert.ToDateTime(Request.Params["StartDate"]);
+            cs.EndDate = Convert.ToDateTime(Request.Params["EndDate"]);
+            CustomerServiceLogic.Update(cs);
+
+            if (Session["CurrentUrl"] == null){ return RedirectToAction("Login", "Public"); }
+              else { return RedirectToRoute(Session["CurrentUrl"]); }
+            
         }
     }
 }

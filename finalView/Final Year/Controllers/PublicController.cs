@@ -19,6 +19,7 @@ namespace Final_Year.Controllers
         [HttpPost]
         public ActionResult LoginSubmit()
         {
+            Session["CurrentUrl"] = Request.Url.ToString();
             String Username = Request.Params["Username"];
             String Password = Request.Params["Password"];
             Employee e = EmployeeLogic.SelectByUnPs(Username, Password);
@@ -44,7 +45,7 @@ namespace Final_Year.Controllers
                 if (c!=null && c.Email!= null)
                 {
                     Session["Customer"] = c;
-                    return RedirectToAction("CustomerHome");
+                    return RedirectToAction("CustomerHome","Partner");
                 }
                 else
                 {

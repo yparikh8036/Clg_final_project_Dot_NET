@@ -1,9 +1,13 @@
 ﻿@model Final_Year.Models.Customer
+@using System.Data;
+@{ 
+    DataTable dt = ViewBag.customerService;
+}
 
 <div class="col-md-10">
 
     <div class="row">
-        <div class="col-md-10">
+        <div class="col-md-12">
             <div class="content-box-large">
                 <div class="panel-heading">
                     <div class="panel-title">CustomerEdit</div>
@@ -11,9 +15,9 @@
                 <div class="panel-body">
                     <form class="form-horizontal" role="form" method="post" action="CustomerEditSubmit">
                         <div class="form-group">
-                            <label for="Id" class="col-sm-2 control-label">Customer Id</label>
+                            <label for="CustomerID" class="col-sm-2 control-label">Customer Id</label>
                             <div class="col-sm-10">
-                                <input type="number" class="form-control" id="CustomerId" placeholder="CustomerId" name="CustomerID" value=@Model.CustomerID readonly>
+                                <input type="number" class="form-control" id="CustomerID" placeholder="CustomerID" name="CustomerID" value=@Model.CustomerID readonly>
                             </div>
                         </div>
                         <div class="form-group">
@@ -108,15 +112,56 @@
                             </div>
                         </div>
 
-             
-
-
                             <div class="form-group">
                                 <div class="col-sm-offset-2 col-sm-10">
                                     <button type="submit" class="btn btn-primary">Submit</button>
                                 </div>
                             </div>
                     </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="content-box-large">
+                <div class="panel-heading">
+                    <div class="panel-title">CustomerServiceList</div>
+                </div>
+                <div class="panel-body">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>CustomerServiceID</th>
+                                <th>CustomerName</th>
+                                <th>ServiceName</th>
+                                <th>StartDate</th>
+                                <th>EndDate</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @for (int i = 0; i < dt.Rows.Count; i++)
+                            {
+                                <tr>
+                                    <td>@dt.Rows[i]["CustomerServiceID"]</td>
+                                    <td>@dt.Rows[i]["Name"]</td>
+                                    <td>@dt.Rows[i]["Sname"]</td>
+                                    <td>@dt.Rows[i]["StartDate"]</td>
+                                    <td>@dt.Rows[i]["EndDate"]</td>
+                                    <td>
+                                        <div class="row">
+                                            <a class="glyphicon glyphicon-pencil" data-toggle="tooltip" title="Edit" href="/Partner/CustomerServiceEdit?CustomerServiceID=@dt.Rows[i]["CustomerServiceID"]&CustomerID=@Model.CustomerID">
+                                            </a>
+                                            <a class="glyphicon glyphicon-trash" data-toggle="tooltip" title="Delete" href="/Partner/CustomerServiceDelete?CustomerServiceID=@dt.Rows[i]["CustomerServiceID"]">
+                                            </a>
+                                        </div>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
