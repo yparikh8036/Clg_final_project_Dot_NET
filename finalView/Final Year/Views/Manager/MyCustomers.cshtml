@@ -2,7 +2,7 @@
 <div class="col-md-10">
     <div class="content-box-large">
         <div class="panel-heading">
-            <div class="panel-title">EmployeeList</div>
+            <div class="panel-title">MyCustomer</div>
         </div>
         <div class="panel-body">
             <table class="table">
@@ -11,27 +11,39 @@
                         <th>ID</th>
                         <th>Name</th>
                         <th>Email</th>
-                        <th>Mobile</th> 
+                        <th>Mobile</th>
                         <th>Active</th>
-                        <th>Role</th>
+                        <th>AccName</th>
+                        <th>DOB</th>
+                        <th>PAN</th>
+                        <th>GSTIN</th>
+                        <th>EID</th>
+
+
                     </tr>
                 </thead>
                 <tbody>
                     @for (int i = 0; i < Model.Rows.Count; i++)
                     {
                         <tr>
-                            <td>@Model.Rows[i]["EmployeeID"]</td>
+                            <td>@Model.Rows[i]["CustomerID"]</td>
                             <td>@Model.Rows[i]["Name"]</td>
                             <td>@Model.Rows[i]["Email"]</td>
                             <td>@Model.Rows[i]["Mobile"]</td>
                             <td>@Model.Rows[i]["IsActive"]</td>
-                            <td>@Model.Rows[i]["EmployeeRole"]</td>
+                            <td>@Model.Rows[i]["AccName"]</td>
+                            <td>@Model.Rows[i]["DOB"]</td>
+                            <td>@Model.Rows[i]["PAN"]</td>
+                            <td>@Model.Rows[i]["GSTIN"]</td>
+                            <td>@Model.Rows[i]["EmployeeID"]</td>
+
                             <td>
                                 <div class="row">
-                                    <a class="glyphicon glyphicon-pencil" data-toggle="tooltip" title="Edit" href="/Partner/EmployeeEdit?EmployeeID=@Model.Rows[i]["EmployeeID"]">
+                                    <a class="glyphicon glyphicon-pencil" data-toggle="tooltip" title="Edit" href="/Partner/CustomerEdit?CustomerID=@Model.Rows[i]["CustomerID"]">
                                     </a>
-                                    <a class="glyphicon glyphicon-trash" data-toggle="tooltip" title="Delete" href="/Partner/EmployeeDelete?EmployeeID=@Model.Rows[i]["EmployeeID"]">
+                                    <a class="glyphicon glyphicon-trash" data-toggle="tooltip" title="Delete" href="/Partner/CustomerDelete?CustomerID=@Model.Rows[i]["CustomerID"]">
                                     </a>
+
                                 </div>
                             </td>
                         </tr>

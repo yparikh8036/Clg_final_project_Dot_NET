@@ -1,0 +1,351 @@
+﻿
+@{
+    ViewBag.Title = "Customerdetails";
+  //  Layout = "~/Views/Shared/_LayoutAdminHomePage.cshtml";
+}
+@using System.Data
+@{
+    DataTable custcontacts = ViewBag.custcontacts;
+    DataTable custdocs = ViewBag.custdocs;
+    DataTable custschedule = ViewBag.custschedule;
+}
+@model Final_Year.Models.Customer
+        <div class="col-md-10">
+            <div class="content-box-large">
+                <div class="panel-heading">
+                    <div class="panel-title">CustomerProfile</div>
+                    <div>
+                        <a class="glyphicon glyphicon-pencil" data-toggle="tooltip" title="Edit" href="/Partner/EmployeeEdit?EmployeeId=@Model.EmployeeID">
+                        </a>
+                    </div>
+                </div>
+                <div class="panel-body">
+                    <div class="col-md-10">
+                        <div class="content-box-large">
+                            <div class="panel-body">
+                                <table class="table table-hover" border="2">
+                                    <tbody>
+                                        <tr>
+                                            <td>CustomerID</td>
+                                            <td>@Model.CustomerID</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Name</td>
+                                            <td>@Model.Name</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Email</td>
+                                            <td>@Model.Email</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Mobile</td>
+                                            <td>@Model.Mobile </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Address</td>
+                                            <td>@Model.Address </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Username</td>
+                                            <td>@Model.Username</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Password</td>
+                                            <td>@Model.Password</td>
+                                        </tr>
+                                        <tr>
+                                            <td>AccName</td>
+                                            <td>@Model.AccName</td>
+                                        </tr>
+                                        <tr>
+                                            <td>AccUsername</td>
+                                            <td>@Model.AccUsername</td>
+                                        </tr>
+                                        <tr>
+                                            <td>AccPassword</td>
+                                            <td>@Model.AccPassword</td>
+                                        </tr>
+                                        <tr>
+                                            <td>DOB</td>
+                                            <td>@Model.DOB</td>
+                                        </tr>
+                                        <tr>
+                                            <td>PAN</td>
+                                            <td>@Model.PAN</td>
+                                        </tr>
+                                        <tr>
+                                            <td>GSTIN</td>
+                                            <td>@Model.GSTIN</td>
+                                        </tr>
+                                        <tr>
+                                            <td>EmployeeName</td>
+                                            <td>@Model.EmployeeID</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-2"></div>
+ 
+ <div class="col-md-10">
+        <div class="content-box-large">
+            <div class="panel-heading">
+                <div class="panel-title">Customer Contacts</div>
+            </div>
+            <div class="panel-body">
+                <form method="post" action="CustomerContactNewSubmit">
+                    <table class="table" border="5">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Mobile</th>
+                                <th>Purpose</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @for (int i = 0; i < custcontacts.Rows.Count; i++)
+                            {
+                            <tr>
+                                <td>@custcontacts.Rows[i]["Name"]</td>
+                                <td>@custcontacts.Rows[i]["Email"]</td>
+                                <td>@custcontacts.Rows[i]["Mobile"]</td>
+                                <td>@custcontacts.Rows[i]["Purpose"]</td>
+                                <td>
+                                    <a class="glyphicon glyphicon-trash" data-toggle="tooltip" title="Delete" href="/Staff/CustContactDelete?CustContactID=@custcontacts.Rows[i]["CustContactID"]&CustomerID=@Model.CustomerID">
+                                    </a>
+                                </td>
+                            </tr>
+                            }
+                            <tr>
+                                <td>
+                                    <div class="form-group">
+                                        <div class="">
+                                            <input type="text" class="form-control" placeholder="Name" name="Name">
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="form-group">
+                                        <div class="">
+                                            <input type="text" class="form-control" placeholder="Email" name="Email">
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="form-group">
+                                        <div class="">
+                                            <input type="text" class="form-control" placeholder="Mobile" name="Mobile">
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="form-group">
+                                        <div class="">
+                                            <input type="text" class="form-control" placeholder="Purpose" name="Purpose">
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="form-group">
+                                        <div class="">
+                                            <input type="hidden" name="CustomerID" value=@Model.CustomerID />
+                                            <button type="submit" class="btn btn-primary">Add</button>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </form>
+            </div>
+        </div>
+    </div>
+<div class="col-md-2"></div>
+
+    <div class="col-md-10">
+        <div class="content-box-large">
+            <div class="panel-heading">
+                <div class="panel-title">Customer Documents</div>
+            </div>
+            <div class="panel-body">
+                <form method="post" action="CustomerDocNewSubmit">
+                    <table class="table" border="5">
+                        <thead>
+                            <tr>
+                                <th>DocTitle</th>
+                                <th>DocFile</th>
+                                <th>DocRemarks</th>
+                                <th>IssueDate</th>
+                                <th>DueDate</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @for (int i = 0; i < custdocs.Rows.Count; i++)
+                            {
+                            <tr>
+                                <td>@custdocs.Rows[i]["DocTitle"]</td>
+                                <td>@custdocs.Rows[i]["DocFile"]</td>
+                                <td>@custdocs.Rows[i]["DocRemarks"]</td>
+                                <td>@custdocs.Rows[i]["IssueDate"]</td>
+                                <td>@custdocs.Rows[i]["DueDate"]</td>
+                                <td>
+                                    <a class="glyphicon glyphicon-trash" data-toggle="tooltip" title="Delete" href="/Staff/CustDocDelete?CustDocID=@custdocs.Rows[i]["CustDocID"]&CustomerID=@Model.CustomerID">
+                                    </a>
+                                </td>
+                            </tr>
+                            }
+                            <tr>
+                                <td>
+                                    <div class="form-group">
+                                        <div class="">
+                                            <input type="text" class="form-control" placeholder="DocTitle" name="DocTitle">
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="form-group">
+                                        <div class="">
+                                            <input type="text" class="form-control" placeholder="DocFile" name="DocFile">
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="form-group">
+                                        <div class="">
+                                            <input type="text" class="form-control" placeholder="DocRemarks" name="DocRemarks">
+                                        </div>
+                                    </div>
+                                </td>
+                  
+                                <td>
+                                    <div class="form-group">
+                                        <div class="">
+                                            <input type="date" class="form-control" placeholder="IssueDate" name="IssueDate">
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="form-group">
+                                        <div class="">
+                                            <input type="date" class="form-control" placeholder="DueDate" name="DueDate">
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="form-group">
+                                        <div class="">
+                                            <input type="hidden" name="CustomerID" value=@Model.CustomerID />
+                                            <button type="submit" class="btn btn-primary">Add</button>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-2"></div>
+    <div class="col-md-10">
+        <div class="content-box-large">
+            <div class="panel-heading">
+                <div class="panel-title">Customer Schedule</div>
+            </div>
+            <div class="panel-body">
+                <form method="post" action="CustomerScheduleNewSubmit">
+                    <table class="table" border="5">
+                        <thead>
+                            <tr>
+                                <th>ServiceName</th>
+                                <th>DueDate</th>
+                                <th>Reqierements</th>
+                                <th>Status</th>
+                                <th>ActualDate</th>
+                                <th>DocFile</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @for (int i = 0; i < custschedule.Rows.Count; i++)
+                            {
+                            <tr>
+                                <td>@custschedule.Rows[i]["Sname"]</td>
+                                <td>@custschedule.Rows[i]["DueDate"]</td>
+                                <td>@custschedule.Rows[i]["Requirements"]</td>
+                                <td>@custschedule.Rows[i]["Status"]</td>
+                                <td>@custschedule.Rows[i]["ActualDate"]</td>
+                                <td>@custschedule.Rows[i]["DocFile"]</td>
+                                <td>
+                                    <a class="glyphicon glyphicon-trash" data-toggle="tooltip" title="Delete" href="/Staff/CustScheduleDelete?CustScheduleID=@custschedule.Rows[i]["CustScheduleID"]&CustomerID=@Model.CustomerID">
+                                    </a>
+                                </td>
+                            </tr>
+                            }
+                            <tr>
+                                <td>
+                                    <div class="form-group">
+                                        <div class="">
+                                            <input type="text" class="form-control" placeholder="ServiceName" name="Sname">
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="form-group">
+                                        <div class="">
+                                            <input type="datetime" class="form-control" placeholder="DueDate" name="DueDate">
+                                        </div>
+                                    </div>
+                                </td>
+
+                                <td>
+                                    <div class="form-group">
+                                        <div class="">
+                                            <input type="text" class="form-control" placeholder="Requirements" name="Requirements">
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="form-group">
+                                        <div class="">
+                                            <input type="text" class="form-control" placeholder="Status" name="Status">
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="form-group">
+                                        <div class="">
+                                            <input type="date" class="form-control" placeholder="ActualDate" name="ActualDate">
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="form-group">
+                                        <div class="">
+                                            <input type="text" class="form-control" placeholder="DocFile" name="DocFile">
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="form-group">
+                                        <div class="">
+                                            <input type="hidden" name="CustomerID" value=@Model.CustomerID />
+                                            <button type="submit" class="btn btn-primary">Add</button>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </form>
+            </div>
+        </div>
+    </div>

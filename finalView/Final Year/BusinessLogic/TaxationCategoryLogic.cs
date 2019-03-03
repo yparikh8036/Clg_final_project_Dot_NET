@@ -15,7 +15,7 @@ namespace Final_Year.BusinessLogic
         {
             String query = "Insert into TaxationCategory values(@CatName)";
             List<SqlParameter> parameters = new List<SqlParameter>();
-            parameters.Add(new SqlParameter("@CatName", tc.CatName));
+            parameters.Add(new SqlParameter("CatName", tc.CatName));
             return DBHelper.ModifyData(query, parameters);
         }
 
@@ -23,8 +23,8 @@ namespace Final_Year.BusinessLogic
         {
             String query = "Update TaxationCategory set CatName=@CatName where TaxationCategoryID=@TaxationCategoryID";
             List<SqlParameter> parameters = new List<SqlParameter>();
-            parameters.Add(new SqlParameter("@CatName", tc.CatName));
-            parameters.Add(new SqlParameter("@TaxationCategoryID", tc.TaxationCategoryID));
+            parameters.Add(new SqlParameter("CatName", tc.CatName));
+            parameters.Add(new SqlParameter("TaxationCategoryID", tc.TaxationCategoryID));
             return DBHelper.ModifyData(query, parameters);
         }
 
@@ -32,7 +32,7 @@ namespace Final_Year.BusinessLogic
         {
             String query = "Delete TaxationCategory where TaxationCategoryID=@TaxationCategoryID ";
             List<SqlParameter> parameters = new List<SqlParameter>();
-            parameters.Add(new SqlParameter("@TaxationCategoryID", ID));
+            parameters.Add(new SqlParameter("TaxationCategoryID", ID));
             return DBHelper.ModifyData(query, parameters);
         }
 
@@ -40,7 +40,7 @@ namespace Final_Year.BusinessLogic
         {
             string query = "SELECT * FROM TaxationCategory WHERE TaxationCategoryID = @ID";
             List<SqlParameter> parameters = new List<SqlParameter>();
-            parameters.Add(new SqlParameter("@ID", ID));
+            parameters.Add(new SqlParameter("ID", ID));
             DataTable dt = DBHelper.SelectData(query, parameters);
 
             TaxationCategory tc = new TaxationCategory();

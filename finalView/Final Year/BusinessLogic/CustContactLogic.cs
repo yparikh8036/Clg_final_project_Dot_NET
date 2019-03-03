@@ -15,11 +15,11 @@ namespace Final_Year.BusinessLogic
         {
             String query = "Insert into CustContact values(@Name,@Email,@Mobile,@Purpose,@CustomerID)";
             List<SqlParameter> parameters = new List<SqlParameter>();
-            parameters.Add(new SqlParameter("@Name", cc.Name));
-            parameters.Add(new SqlParameter("@Email", cc.Email));
-            parameters.Add(new SqlParameter("@Mobile", cc.Mobile));
-            parameters.Add(new SqlParameter("@Purpose", cc.Purpose));
-            parameters.Add(new SqlParameter("@CustomerID", cc.CustomerID));
+            parameters.Add(new SqlParameter("Name", cc.Name));
+            parameters.Add(new SqlParameter("Email", cc.Email));
+            parameters.Add(new SqlParameter("Mobile", cc.Mobile));
+            parameters.Add(new SqlParameter("Purpose", cc.Purpose));
+            parameters.Add(new SqlParameter("CustomerID", cc.CustomerID));
             return DBHelper.ModifyData(query, parameters);
         }
 
@@ -27,28 +27,28 @@ namespace Final_Year.BusinessLogic
         {
             string query = "UPDATE CustContact SET Name = @Name, Email = @Email, Mobile = @Mobile, Purpose = @Purpose, CustomerID = @CustomerID where CustContactID=@CustContactID " ;
             List<SqlParameter> parameters = new List<SqlParameter>();
-            parameters.Add(new SqlParameter("@Name", cc.Name));
-            parameters.Add(new SqlParameter("@Email", cc.Email));
-            parameters.Add(new SqlParameter("@Mobile", cc.Mobile));
-            parameters.Add(new SqlParameter("@Purpose", cc.Purpose));
-            parameters.Add(new SqlParameter("@CustomerID", cc.CustomerID));
-            parameters.Add(new SqlParameter("@CustContactID", cc.CustContactID));
+            parameters.Add(new SqlParameter("Name", cc.Name));
+            parameters.Add(new SqlParameter("Email", cc.Email));
+            parameters.Add(new SqlParameter("Mobile", cc.Mobile));
+            parameters.Add(new SqlParameter("Purpose", cc.Purpose));
+            parameters.Add(new SqlParameter("CustomerID", cc.CustomerID));
+            parameters.Add(new SqlParameter("CustContactID", cc.CustContactID));
 
             return DBHelper.ModifyData(query, parameters);
         }
 
         public static int Delete(int ID)
         {
-            String query = "Delete CustContact where CustContactID=@CustContactID";
+            String query = "Delete from CustContact where CustContactID=@CustContactID";
             List<SqlParameter> parameters = new List<SqlParameter>();
-            parameters.Add(new SqlParameter("@CustContactID", ID));
+            parameters.Add(new SqlParameter("CustContactID", ID));
             return DBHelper.ModifyData(query, parameters);
         }
         public static CustContact SelectByPK(int ID)
         {
             string query = "SELECT * FROM CustContact WHERE CustContactID = @ID";
             List<SqlParameter> parameters = new List<SqlParameter>();
-            parameters.Add(new SqlParameter("@ID", ID));
+            parameters.Add(new SqlParameter("ID", ID));
             DataTable dt = DBHelper.SelectData(query, parameters);
 
             CustContact c = new CustContact();
@@ -66,6 +66,14 @@ namespace Final_Year.BusinessLogic
             string query = "SELECT * FROM CustContact";
             List<SqlParameter> parameters = new List<SqlParameter>();
             return DBHelper.SelectData(query, parameters);
+        }
+        public static DataTable getCustomerContacts(int ID)
+        {
+            String query = "Select * from CustContact where CustomerID=@CustomerID";
+            List<SqlParameter> parameters = new List<SqlParameter>();
+            parameters.Add(new SqlParameter("CustomerID", ID));
+            DataTable dt = DBHelper.SelectData(query, parameters);
+            return dt;
         }
     }
 }

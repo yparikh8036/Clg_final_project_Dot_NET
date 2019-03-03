@@ -1,8 +1,5 @@
 ﻿
-@{
-    Layout = "~/Views/Shared/_LayoutAdminHomePageWithToggleNavBar.cshtml";
-}
-<div class="col-md-14">
+<div class="col-md-10">
     <div class="content-box-large">
         <div class="panel-heading">
             <div class="panel-title">Customer List</div>
@@ -15,13 +12,8 @@
                         <th>Name</th>
                         <th>Email</th>
                         <th>Mobile</th>
-                        <th>Address</th>
-                        <th>Username</th>
-                        <th>Password</th>
                         <th>Active</th>
                         <th>AccName</th>
-                        <th>AccUsername</th>
-                        <th>AccPassword</th>
                         <th>DOB</th>
                         <th>PAN</th>
                         <th>GSTIN</th>
@@ -38,13 +30,8 @@
                             <td>@Model.Rows[i]["Name"]</td>
                             <td>@Model.Rows[i]["Email"]</td>
                             <td>@Model.Rows[i]["Mobile"]</td>
-                            <td>@Model.Rows[i]["Address"]</td>
-                            <td>@Model.Rows[i]["Username"]</td>
-                            <td>@Model.Rows[i]["Password"]</td>
                             <td>@Model.Rows[i]["IsActive"]</td>
                             <td>@Model.Rows[i]["AccName"]</td>
-                            <td>@Model.Rows[i]["AccUsername"]</td>
-                            <td>@Model.Rows[i]["AccPassword"]</td>
                             <td>@Model.Rows[i]["DOB"]</td>
                             <td>@Model.Rows[i]["PAN"]</td>
                             <td>@Model.Rows[i]["GSTIN"]</td>

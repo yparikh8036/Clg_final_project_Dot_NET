@@ -16,13 +16,13 @@ namespace TaxConsultantAutomation2018.BusinessLogic
         {
             String query = "Inseert into TaxationUpdate values(@TaxationCategoryID,@Title,@Description,@Photo,@EmployeeID,@CreateDate,@IsActive)";
             List<SqlParameter> parameters = new List<SqlParameter>();
-            parameters.Add(new SqlParameter("@TaxationCategoryID", td.TaxationCategoryID));
-            parameters.Add(new SqlParameter("@Title", td.Title));
-            parameters.Add(new SqlParameter("@Description", td.Description));
-            parameters.Add(new SqlParameter("@Photo", td.Photo));
+            parameters.Add(new SqlParameter("TaxationCategoryID", td.TaxationCategoryID));
+            parameters.Add(new SqlParameter("Title", td.Title));
+            parameters.Add(new SqlParameter("Description", td.Description));
+            parameters.Add(new SqlParameter("Photo", td.Photo));
           //  parameters.Add(new SqlParameter("@EmployeeID",td.EmployeeID));
-            parameters.Add(new SqlParameter("@CreateDate", td.CreateDate));
-            parameters.Add(new SqlParameter("@IsActive", td.IsActive));
+            parameters.Add(new SqlParameter("CreateDate", td.CreateDate));
+            parameters.Add(new SqlParameter("IsActive", td.IsActive));
 
             return DBHelper.ModifyData(query, parameters);
         }
@@ -31,14 +31,14 @@ namespace TaxConsultantAutomation2018.BusinessLogic
         {
             String query = "Update TaxationUpdate set TaxationCategoryID=@TaxationCategoryID,Title=@Title,Description=@Description,Photo=@Photo,EmployeeID=@EmployeeID,CreateDate=@CreateDate,IsActive=@IsActive where TaxationUpdateID=@TaxationUpdateID";
             List<SqlParameter> parameters = new List<SqlParameter>();
-            parameters.Add(new SqlParameter("@TaxationCategoryID", td.TaxationCategoryID));
-            parameters.Add(new SqlParameter("@Title", td.Title));
-            parameters.Add(new SqlParameter("@Description", td.Description));
-            parameters.Add(new SqlParameter("@Photo", td.Photo));
+            parameters.Add(new SqlParameter("TaxationCategoryID", td.TaxationCategoryID));
+            parameters.Add(new SqlParameter("Title", td.Title));
+            parameters.Add(new SqlParameter("Description", td.Description));
+            parameters.Add(new SqlParameter("Photo", td.Photo));
            // parameters.Add(new SqlParameter("@EmployeeID", td.EmployeeID));
-            parameters.Add(new SqlParameter("@CreateDate", td.CreateDate));
-            parameters.Add(new SqlParameter("@IsActive", td.IsActive));
-            parameters.Add(new SqlParameter("@TaxationUpdateID", td.TaxationUpdateID));
+            parameters.Add(new SqlParameter("CreateDate", td.CreateDate));
+            parameters.Add(new SqlParameter("IsActive", td.IsActive));
+            parameters.Add(new SqlParameter("TaxationUpdateID", td.TaxationUpdateID));
             return DBHelper.ModifyData(query, parameters);
         }
 
@@ -46,7 +46,7 @@ namespace TaxConsultantAutomation2018.BusinessLogic
         {
             String query = "Delete from TaxationUpdate where TaxationUpdateID=@ID";
             List<SqlParameter> parameters = new List<SqlParameter>();
-            parameters.Add(new SqlParameter("@ID", ID));
+            parameters.Add(new SqlParameter("ID", ID));
             return DBHelper.ModifyData(query, parameters);
         }
 
@@ -54,7 +54,7 @@ namespace TaxConsultantAutomation2018.BusinessLogic
         {
             string query = "SELECT * FROM TaxationUpdate WHERE TaxationUpdateID = @ID";
             List<SqlParameter> parameters = new List<SqlParameter>();
-            parameters.Add(new SqlParameter("@ID", ID));
+            parameters.Add(new SqlParameter("ID", ID));
             DataTable dt = DBHelper.SelectData(query, parameters);
 
             TaxationUpdate td = new TaxationUpdate();

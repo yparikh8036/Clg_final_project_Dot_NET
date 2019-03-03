@@ -31,16 +31,16 @@ namespace Final_Year.BusinessLogic
         {
             string query = "UPDATE Employee SET Name = @Name, Email = @Email, Mobile = @Mobile, Address = @Address, Username = @Username, Password = @Password, IsActive = @IsActive, EmployeeRole = @EmployeeRole,Photo=@Photo where EmployeeID=@EmployeeID";
             List<SqlParameter> parameters = new List<SqlParameter>();
-            parameters.Add(new SqlParameter("@Name", e.Name));
-            parameters.Add(new SqlParameter("@Email", e.Email));
-            parameters.Add(new SqlParameter("@Mobile", e.Mobile));
-            parameters.Add(new SqlParameter("@Address", e.Address));
-            parameters.Add(new SqlParameter("@Username", e.Username));
-            parameters.Add(new SqlParameter("@Password", e.Password));
-            parameters.Add(new SqlParameter("@IsActive", e.IsActive));
-            parameters.Add(new SqlParameter("@EmployeeRole", e.EmployeeRole));
-            parameters.Add(new SqlParameter("@Photo", e.Photo));
-            parameters.Add(new SqlParameter("@EmployeeID", e.EmployeeID));
+            parameters.Add(new SqlParameter("Name", e.Name));
+            parameters.Add(new SqlParameter("Email", e.Email));
+            parameters.Add(new SqlParameter("Mobile", e.Mobile));
+            parameters.Add(new SqlParameter("Address", e.Address));
+            parameters.Add(new SqlParameter("Username", e.Username));
+            parameters.Add(new SqlParameter("Password", e.Password));
+            parameters.Add(new SqlParameter("IsActive", e.IsActive));
+            parameters.Add(new SqlParameter("EmployeeRole", e.EmployeeRole));
+            parameters.Add(new SqlParameter("Photo", e.Photo));
+            parameters.Add(new SqlParameter("EmployeeID", e.EmployeeID));
             return DBHelper.ModifyData(query, parameters);
         }
 
@@ -48,7 +48,7 @@ namespace Final_Year.BusinessLogic
         {
             String query = "Delete from Employee where EmployeeID=@ID";
             List<SqlParameter> parameters = new List<SqlParameter>();
-            parameters.Add(new SqlParameter("@ID", ID));
+            parameters.Add(new SqlParameter("ID", ID));
             return DBHelper.ModifyData(query, parameters);
         }
 
@@ -103,6 +103,22 @@ namespace Final_Year.BusinessLogic
                 e.Photo = dt.Rows[0]["Photo"].ToString();
             }
             return e;
+        }
+        public static Boolean CheckEmail(String Email)
+        {
+            String query = "Select * from Employee  where Email=@Email";
+            List<SqlParameter> parameters = new List<SqlParameter>();
+            parameters.Add(new SqlParameter("Email", Email));
+            DataTable dt = DBHelper.SelectData(query, parameters);
+            if (dt.Rows.Count > 0)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+
         }
     }
 }
