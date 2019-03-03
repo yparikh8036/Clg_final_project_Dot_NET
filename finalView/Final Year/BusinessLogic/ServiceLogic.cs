@@ -28,12 +28,12 @@ namespace Final_Year.BusinessLogic
         {
             String query = "Update Service set Sname=@Sname,Description=@Description,Requirements=@Requirements,Documents=@Documents,EmployeeID=@EmployeeID where ServiceID=@ServiceID";
             List<SqlParameter> parameters = new List<SqlParameter>();
-            parameters.Add(new SqlParameter("@Sname",c.Sname));
-            parameters.Add(new SqlParameter("@Description",c.Description));
-            parameters.Add(new SqlParameter("@Requirements",c.Requirements));
-            parameters.Add(new SqlParameter("@Documents",c.Documents));
-            parameters.Add(new SqlParameter("@EmployeeID",c.EmployeeID));
-            parameters.Add(new SqlParameter("@ServiceID", c.ServiceID));
+            parameters.Add(new SqlParameter("Sname",c.Sname));
+            parameters.Add(new SqlParameter("Description",c.Description));
+            parameters.Add(new SqlParameter("Requirements",c.Requirements));
+            parameters.Add(new SqlParameter("Documents",c.Documents));
+            parameters.Add(new SqlParameter("EmployeeID",c.EmployeeID));
+            parameters.Add(new SqlParameter("ServiceID", c.ServiceID));
             return DBHelper.ModifyData(query, parameters);
         }
 
@@ -41,7 +41,7 @@ namespace Final_Year.BusinessLogic
         {
             String query = "Delete from Service where ServiceID=@ID";
             List<SqlParameter> parameters = new List<SqlParameter>();
-            parameters.Add(new SqlParameter("@ID", ID));
+            parameters.Add(new SqlParameter("ID", ID));
             return DBHelper.ModifyData(query, parameters);
         }
 
@@ -49,7 +49,7 @@ namespace Final_Year.BusinessLogic
         {
             string query = "SELECT * FROM Service WHERE ServiceID = @ID";
             List<SqlParameter> parameters = new List<SqlParameter>();
-            parameters.Add(new SqlParameter("@ID", ID));
+            parameters.Add(new SqlParameter("ID", ID));
             DataTable dt = DBHelper.SelectData(query, parameters);
 
             Service s = new Service();

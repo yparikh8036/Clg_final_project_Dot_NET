@@ -15,9 +15,9 @@ namespace Final_Year.BusinessLogic
         {
             String query = "Insert into CustAccDoc values(@CustomerID,@DocFile,@DocDate)";
             List<SqlParameter> parameters = new List<SqlParameter>();
-            parameters.Add(new SqlParameter("@CustomerID", cad.CustomerID));
-            parameters.Add(new SqlParameter("@DocFile", cad.DocFile));
-            parameters.Add(new SqlParameter("@DocDate", cad.DocDate));
+            parameters.Add(new SqlParameter("CustomerID", cad.CustomerID));
+            parameters.Add(new SqlParameter("DocFile", cad.DocFile));
+            parameters.Add(new SqlParameter("DocDate", cad.DocDate));
             return DBHelper.ModifyData(query, parameters);
         }
 
@@ -25,10 +25,10 @@ namespace Final_Year.BusinessLogic
         {
             String query = "Update CustAccDoc set CustomerID=@CustomerID,DocFile=@DocFile,DocDate=@DocDate where CustAccDocID=@CustAccDocID";
             List<SqlParameter> parameters = new List<SqlParameter>();
-            parameters.Add(new SqlParameter("@CustomerID", cad.CustomerID));
-            parameters.Add(new SqlParameter("@DocFile", cad.DocFile));
-            parameters.Add(new SqlParameter("@DocDate", cad.DocDate));
-            parameters.Add(new SqlParameter("@CustAccDocID", cad.CustAccDocID));
+            parameters.Add(new SqlParameter("CustomerID", cad.CustomerID));
+            parameters.Add(new SqlParameter("DocFile", cad.DocFile));
+            parameters.Add(new SqlParameter("DocDate", cad.DocDate));
+            parameters.Add(new SqlParameter("CustAccDocID", cad.CustAccDocID));
             return DBHelper.ModifyData(query, parameters);
         }
 
@@ -36,7 +36,7 @@ namespace Final_Year.BusinessLogic
         {
             String query = "Delete from CustAccDoc Where CustAccDocID=@CustAccDocID";
             List<SqlParameter> parameters = new List<SqlParameter>();
-            parameters.Add(new SqlParameter("@CustAccDocID", ID));
+            parameters.Add(new SqlParameter("CustAccDocID", ID));
             return DBHelper.ModifyData(query, parameters);
         }
 
@@ -44,7 +44,7 @@ namespace Final_Year.BusinessLogic
         {
             string query = "SELECT * FROM CustAccDoc WHERE CustAccDocID = @ID";
             List<SqlParameter> parameters = new List<SqlParameter>();
-            parameters.Add(new SqlParameter("@ID", ID));
+            parameters.Add(new SqlParameter("ID", ID));
             DataTable dt = DBHelper.SelectData(query, parameters);
 
             CustAccDoc cad = new CustAccDoc();

@@ -6,6 +6,7 @@ using System.Web;
 using System.Web.Mvc;
 using Final_Year.Models;
 using Final_Year.BusinessLogic;
+using System.IO;
 
 namespace Final_Year.Controllers
 {
@@ -34,20 +35,33 @@ namespace Final_Year.Controllers
             e.Password = Request.Params["Password"];
             e.IsActive = (Request.Params["IsActive"] == "1");
 
-            // if (Request.Files["Photo"].ContentLength > 0)
-            //{
-            //     string filename = DateTime.Now.Ticks.ToString() + "_" + Request.Files["Photo"].FileName;
-            //     string PhysicalFileName = Server.MapPath("~/UserProfilePicture/" + filename);
-            //     Request.Files["Photo"].SaveAs(PhysicalFileName);
-            //     e.Photo = filename;
-            // }
-            // else
-            // {
-            //     e.Photo = "";
-            //}
-            e.Photo = Request.Params["Photo"];
-            EmployeeLogic.Insert(e);
-            return RedirectToAction("EmployeeList");
+            if (Request.Files["Photo"].ContentLength > 0)
+            {
+                //string filename = DateTime.Now.Ticks.ToString() + "_" + Request.Files["Photo"].FileName;
+                //string PhysicalFileName = Server.MapPath("~/UserProfilePicture/" + filename);
+                //Request.Files["Photo"].SaveAs(PhysicalFileName);
+                //e.Photo = filename;
+                var fileName = Path.GetFileName(Request.Files["Photo"].FileName);
+                var path = Path.Combine(Server.MapPath("~/UserProfilePicture/"), fileName);
+                Request.Files["Photo"].SaveAs(path);
+                e.Photo = path;
+            }
+            else
+            {
+                e.Photo = "";
+            }
+            // e.Photo = Request.Params["Photo"];
+            if (EmployeeLogic.CheckEmail(Request.Params["Email"]))
+            {
+                EmployeeLogic.Insert(e);
+                return RedirectToAction("EmployeeList");
+            }
+            else
+            {
+                String actionName = "EmployeeNewSubmit";
+                ViewBag.actionname = actionName;
+                return RedirectToAction("EmailcheckFaild");
+            }
         }
         public ActionResult EmployeeList()
         {
@@ -104,8 +118,17 @@ namespace Final_Year.Controllers
             c.GSTIN = Request.Params["GSTIN"];
             c.EmployeeID = Convert.ToInt32(Request.Params["EmployeeID"]);
 
-            CustomerLogic.Insert(c);
-            return RedirectToAction("CustomerList");
+            if (CustomerLogic.CheckEmail(Request.Params["Email"]))
+            {
+                CustomerLogic.Insert(c);
+                return RedirectToAction("CustomerList");
+            }
+            else
+            {
+                String actionName = "CustomerNewSubmit";
+                ViewBag.actionname = actionName;
+                return RedirectToAction("EmailcheckFaild");
+            }
         }
         public ActionResult CustomerList()
         {
@@ -114,10 +137,12 @@ namespace Final_Year.Controllers
         }
         public ActionResult CustomerEdit()
         {
-            Customer c = CustomerLogic.SelectByPK(Convert.ToInt32(Request.Params["CustomerID"]));
+            DataTable xyz = CustomerLogic.SelectByPKWithEmpName(Convert.ToInt32(Request.Params["CustomerID"]));
             DataTable dt = CustomerServiceLogic.CustomerServiceByCustID(Convert.ToInt32(Request.Params["CustomerID"]));
+            DataTable sdt = ServiceLogic.SelectALL();
+            ViewBag.service = sdt;
             ViewBag.customerService = dt;
-            return View(c);
+            return View(xyz);
         }
         [HttpPost]
         public ActionResult CustomerEditSubmit()
@@ -185,7 +210,7 @@ namespace Final_Year.Controllers
         [HttpPost]
         public ActionResult ServiceEditSubmit()
         {
-            Service c = ServiceLogic.SelectByPK(Convert.ToInt32(Request.Params["ServiceID"]));
+             Service c = ServiceLogic.SelectByPK(Convert.ToInt32(Request.Params["ServiceID"]));
             c.Sname = Request.Params["Sname"];
             c.Description = Request.Params["Description"];
             c.Documents = Request.Params["Documents"];
@@ -227,7 +252,7 @@ namespace Final_Year.Controllers
             cs.StartDate = Convert.ToDateTime(Request.Params["StartDate"]);
             cs.EndDate = Convert.ToDateTime(Request.Params["EndDate"]);
             CustomerServiceLogic.Insert(cs);
-            return RedirectToAction("CustomerServiceList");
+            return RedirectToAction("CustomerEdit",new { @CustomerID=cs.CustomerID });
         }
         public ActionResult CustomerServiceList()
         {
@@ -239,7 +264,7 @@ namespace Final_Year.Controllers
         {
             int CustomerServiceID = Convert.ToInt32(Request.Params["CustomerServiceID"]);
             CustomerServiceLogic.Delete(CustomerServiceID);
-            return RedirectToAction("CustomerServiceList");
+            return RedirectToAction("CustomerEdit", new { @CustomerID = Convert.ToInt32(Request.Params["CustomerID"]) });
         }
         public ActionResult CustomerServiceEdit()
         {
@@ -248,17 +273,18 @@ namespace Final_Year.Controllers
         }
         public ActionResult CustomerServiceEditSubmit()
         {
-            CustomerService cs = new CustomerService();
-            cs.CustomerServiceID = Convert.ToInt32(Request.Params["CustomerServiceID"]);
+            CustomerService cs = CustomerServiceLogic.SelectByPK(Convert.ToInt32(Request.Params["CustomerServiceID"]));
             cs.CustomerID = Convert.ToInt32(Request.Params["CustomerID"]);
             cs.ServiceID = Convert.ToInt32(Request.Params["ServiceID"]);
             cs.StartDate = Convert.ToDateTime(Request.Params["StartDate"]);
             cs.EndDate = Convert.ToDateTime(Request.Params["EndDate"]);
             CustomerServiceLogic.Update(cs);
 
-            if (Session["CurrentUrl"] == null){ return RedirectToAction("Login", "Public"); }
-              else { return RedirectToRoute(Session["CurrentUrl"]); }
-            
+            //if (Session["CurrentUrl"] == null) { return RedirectToAction("Login", "Public"); }
+            //else { return Redirect((string)Session["CurrentUrl"]); }
+
+            return RedirectToAction("CustomerServiceList");
+
         }
     }
 }

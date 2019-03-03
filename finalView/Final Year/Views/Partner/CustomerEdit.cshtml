@@ -1,7 +1,8 @@
-﻿@model Final_Year.Models.Customer
+﻿
 @using System.Data;
 @{ 
     DataTable dt = ViewBag.customerService;
+    DataTable dtService = ViewBag.service;
 }
 
 <div class="col-md-10">
@@ -17,50 +18,50 @@
                         <div class="form-group">
                             <label for="CustomerID" class="col-sm-2 control-label">Customer Id</label>
                             <div class="col-sm-10">
-                                <input type="number" class="form-control" id="CustomerID" placeholder="CustomerID" name="CustomerID" value=@Model.CustomerID readonly>
+                                <input type="number" class="form-control" id="CustomerID" placeholder="CustomerID" name="CustomerID" value=@Model.Rows[0]["CustomerID"] readonly>
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="Name" class="col-sm-2 control-label">Name</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" id="Name" placeholder="Name" name="Name" value=@Model.Name required>
+                                <input type="text" class="form-control" id="Name" placeholder="Name" name="Name" value=@Model.Rows[0]["Name"] required>
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="Email" class="col-sm-2 control-label">Email</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" id="Email" placeholder="Email" name="Email" value=@Model.Email required>
+                                <input type="text" class="form-control" id="Email" placeholder="Email" name="Email" value=@Model.Rows[0]["Email"] required>
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="Mobile" class="col-sm-2 control-label">Mobile</label>
                             <div class="col-sm-10">
-                                <input type="number" class="form-control" id="Mobile" placeholder="Mobile" name="Mobile" value=@Model.Mobile required>
+                                <input type="number" class="form-control" id="Mobile" placeholder="Mobile" name="Mobile" value=@Model.Rows[0]["Mobile"] required>
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="Address" class="col-sm-2 control-label">Address</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" id="Address" placeholder="Address" name="Address" value=@Model.Address required>
+                                <input type="text" class="form-control" id="Address" placeholder="Address" name="Address" value=@Model.Rows[0]["Address"] required>
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="Username" class="col-sm-2 control-label">Username</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" id="Username" placeholder="Username" name="Username" value=@Model.Username required>
+                                <input type="text" class="form-control" id="Username" placeholder="Username" name="Username" value=@Model.Rows[0]["Username"] required>
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="Password" class="col-sm-2 control-label">Password</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" id="Password" placeholder="Password" name="Password" value=@Model.Password required>
+                                <input type="text" class="form-control" id="Password" placeholder="Password" name="Password" value=@Model.Rows[0]["Password"] required>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-md-2 control-label">IsActive</label>
                             <div class="col-md-10">
                                 <label class="checkbox-inline">
-                                    <input type="checkbox" name="IsActive" value="1" @((Model.IsActive == true) ? "checked=checked" : "")>
+                                    <input type="checkbox" name="IsActive" value="1" @((@Model.Rows[0]["IsActive"] == true) ? "checked=checked" : "")>
                                 </label>
                             </div>
                         </div>
@@ -68,47 +69,47 @@
                         <div class="form-group">
                             <label for="AccName" class="col-sm-2 control-label">Accountant Name</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" id="AccName" placeholder="Accountant Name" name="AccName" value=@Model.AccName>
+                                <input type="text" class="form-control" id="AccName" placeholder="Accountant Name" name="AccName" value=@Model.Rows[0]["AccName"]>
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="AccUsername" class="col-sm-2 control-label">Accountant Username</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" id="AccUsername" placeholder="Accountant Username" name="AccUsername" value=@Model.AccUsername>
+                                <input type="text" class="form-control" id="AccUsername" placeholder="Accountant Username" name="AccUsername" value=@Model.Rows[0]["AccUsername"]>
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="AccPassword" class="col-sm-2 control-label">Accountant Password</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" id="AccPassword" placeholder="Accountant Password" name="AccPassword" value=@Model.AccPassword>
+                                <input type="text" class="form-control" id="AccPassword" placeholder="Accountant Password" name="AccPassword" value=@Model.Rows[0]["AccPassword"]>
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label for="DateofBirth" class="col-sm-2 control-label">Date of Birth</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" id="DOB" placeholder="DateOFBirth" name="DOB" value=@Model.DOB required>
+                                <input type="text" class="form-control" id="DOB" placeholder="DateOFBirth" name="DOB" value=@Model.Rows[0]["DOB"] required>
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label for="PAN" class="col-sm-2 control-label">PAN</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" id="PAN" placeholder="PAN" name="PAN" value=@Model.PAN required>
+                                <input type="text" class="form-control" id="PAN" placeholder="PAN" name="PAN" value=@Model.Rows[0]["PAN"] required>
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label for="GSTIN" class="col-sm-2 control-label">GSTIN</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" id="GSTIN" placeholder="GSTIN" name="GSTIN" value=@Model.GSTIN required>
+                                <input type="text" class="form-control" id="GSTIN" placeholder="GSTIN" name="GSTIN" value=@Model.Rows[0]["GSTIN"] required>
                             </div>
                         </div>
 
                         <div class="form-group">
-                            <label for="EmployeeID" class="col-sm-2 control-label">EmployeeID</label>
+                            <label for="EmployeeName" class="col-sm-2 control-label">EmployeeName</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" id="EmployeeID" placeholder="EmployeeID" name="EmployeeID" value=@Model.EmployeeID required>
+                                <input type="text" class="form-control" id="EmployeeName" placeholder="EmployeeName" name="EmployeeName" value=@Model.Rows[0]["Name"] required>
                             </div>
                         </div>
 
@@ -130,38 +131,69 @@
                     <div class="panel-title">CustomerServiceList</div>
                 </div>
                 <div class="panel-body">
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th>CustomerServiceID</th>
-                                <th>CustomerName</th>
-                                <th>ServiceName</th>
-                                <th>StartDate</th>
-                                <th>EndDate</th>
-
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @for (int i = 0; i < dt.Rows.Count; i++)
-                            {
+                    <form method="post" action="CustomerServiceNewSubmit">
+                        <table class="table" border="5">
+                            <thead>
                                 <tr>
-                                    <td>@dt.Rows[i]["CustomerServiceID"]</td>
-                                    <td>@dt.Rows[i]["Name"]</td>
-                                    <td>@dt.Rows[i]["Sname"]</td>
-                                    <td>@dt.Rows[i]["StartDate"]</td>
-                                    <td>@dt.Rows[i]["EndDate"]</td>
-                                    <td>
-                                        <div class="row">
-                                            <a class="glyphicon glyphicon-pencil" data-toggle="tooltip" title="Edit" href="/Partner/CustomerServiceEdit?CustomerServiceID=@dt.Rows[i]["CustomerServiceID"]&CustomerID=@Model.CustomerID">
-                                            </a>
-                                            <a class="glyphicon glyphicon-trash" data-toggle="tooltip" title="Delete" href="/Partner/CustomerServiceDelete?CustomerServiceID=@dt.Rows[i]["CustomerServiceID"]">
-                                            </a>
-                                        </div>
-                                    </td>
+                                    <th>ServiceName</th>
+                                    <th>StartDate</th>
+                                    <th>EndDate</th>
+                                    <th></th>
                                 </tr>
-                            }
-                        </tbody>
-                    </table>
+                            </thead>
+                            <tbody>
+                                @for (int i = 0; i < dt.Rows.Count; i++)
+                                {
+                                    <tr>
+                                        <td>@dt.Rows[i]["Sname"]</td>
+                                        <td>@dt.Rows[i]["StartDate"]</td>
+                                        <td>@dt.Rows[i]["EndDate"]</td>
+                                        <td>
+                                                <a class="glyphicon glyphicon-trash" data-toggle="tooltip" title="Delete" href="/Partner/CustomerServiceDelete?CustomerServiceID=@dt.Rows[i]["CustomerServiceID"]&CustomerID=@Model.Rows[0]["CustomerID"]">
+                                                </a> 
+                                        </td>
+                                    </tr>
+                                }
+                                    <tr>
+                                        <td>
+                                            <div class="form-group">
+                                                <div class="">
+                                                    <select class="form-control input-sm" name="ServiceID">
+                                                        <option selected disabled>Select</option>
+                                                        @for (int i = 0; i < dtService.Rows.Count; i++)
+                                                        {
+                                                            <option value="@dtService.Rows[i]["ServiceID"]">@dtService.Rows[i]["Sname"]</option>
+                                                        }
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="form-group">
+                                                <div class="">
+                                                    <input type="datetime" class="form-control"  placeholder="StartDate" name="StartDate">
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="form-group">
+                                                <div class="">
+                                                    <input type="datetime" class="form-control" placeholder="EndDate" name="EndDate">
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="form-group">
+                                                <div class="">
+                                                    <input type="hidden" name="CustomerID" value=@Model.Rows[0]["CustomerID"] />
+                                                    <button type="submit" class="btn btn-primary">Add</button>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                            </tbody>
+                        </table>
+                    </form>
                 </div>
             </div>
         </div>

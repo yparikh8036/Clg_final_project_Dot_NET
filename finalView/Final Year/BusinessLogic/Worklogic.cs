@@ -15,15 +15,15 @@ namespace Final_Year.BusinessLogic
         {
             String query = "Insert into Work values(@CreatorID,@AssignedID,@Title,@Description,@CreateDate,@DueDate,@Status,@CompletionDate,@CompletionRemarks)";
             List<SqlParameter> parameters = new List<SqlParameter>();
-            parameters.Add(new SqlParameter("@CreatorID", w.CreatorID));
-            parameters.Add(new SqlParameter("@AssignedID", w.AssignedID));
-            parameters.Add(new SqlParameter("@Title", w.Title));
-            parameters.Add(new SqlParameter("@Description", w.Description));
-            parameters.Add(new SqlParameter("@CreateDate", w.CreateDate));
-            parameters.Add(new SqlParameter("@DueDate", w.DueDate));
-            parameters.Add(new SqlParameter("@Status", w.Status));
-            parameters.Add(new SqlParameter("@CompletionDate", w.CompletionDate));
-            parameters.Add(new SqlParameter("@CompletionRemarks", w.CompletionRemarks));
+            parameters.Add(new SqlParameter("CreatorID", w.CreatorID));
+            parameters.Add(new SqlParameter("AssignedID", w.AssignedID));
+            parameters.Add(new SqlParameter("Title", w.Title));
+            parameters.Add(new SqlParameter("Description", w.Description));
+            parameters.Add(new SqlParameter("CreateDate", w.CreateDate));
+            parameters.Add(new SqlParameter("DueDate", w.DueDate));
+            parameters.Add(new SqlParameter("Status", w.Status));
+            parameters.Add(new SqlParameter("CompletionDate", w.CompletionDate));
+            parameters.Add(new SqlParameter("CompletionRemarks", w.CompletionRemarks));
             return DBHelper.ModifyData(query, parameters);
         }
 
@@ -31,16 +31,16 @@ namespace Final_Year.BusinessLogic
         {
             String query = "Update Work set CreatorID=@CreatorID,Assigned=@AssignedID,Title=@Title,Description=@Description,CreateDate=@CreateDate,DueDate=@DueDate,Statu=@Status,CompletionDate=@CompletionDate,CompletionRemarks=@CompletionRemarks where WorkID=@WorkID)";
             List<SqlParameter> parameters = new List<SqlParameter>();
-            parameters.Add(new SqlParameter("@CreatorID", w.CreatorID));
-            parameters.Add(new SqlParameter("@AssignedID", w.AssignedID));
-            parameters.Add(new SqlParameter("@Title", w.Title));
-            parameters.Add(new SqlParameter("@Description", w.Description));
-            parameters.Add(new SqlParameter("@CreateDate", w.CreateDate));
-            parameters.Add(new SqlParameter("@DueDate", w.DueDate));
-            parameters.Add(new SqlParameter("@Status", w.Status));
-            parameters.Add(new SqlParameter("@CompletionDate", w.CompletionDate));
-            parameters.Add(new SqlParameter("@CompletionRemarks", w.CompletionRemarks));
-            parameters.Add(new SqlParameter("@WorkID", w.WorkID));
+            parameters.Add(new SqlParameter("CreatorID", w.CreatorID));
+            parameters.Add(new SqlParameter("AssignedID", w.AssignedID));
+            parameters.Add(new SqlParameter("Title", w.Title));
+            parameters.Add(new SqlParameter("Description", w.Description));
+            parameters.Add(new SqlParameter("CreateDate", w.CreateDate));
+            parameters.Add(new SqlParameter("DueDate", w.DueDate));
+            parameters.Add(new SqlParameter("Status", w.Status));
+            parameters.Add(new SqlParameter("CompletionDate", w.CompletionDate));
+            parameters.Add(new SqlParameter("CompletionRemarks", w.CompletionRemarks));
+            parameters.Add(new SqlParameter("WorkID", w.WorkID));
             return DBHelper.ModifyData(query, parameters);
         }
 
@@ -48,7 +48,7 @@ namespace Final_Year.BusinessLogic
         {
             String query = "Delete from Work Where WorkID=@WorkID";
             List<SqlParameter> parameters = new List<SqlParameter>();
-            parameters.Add(new SqlParameter("@WorkID", ID));
+            parameters.Add(new SqlParameter("WorkID", ID));
             return DBHelper.ModifyData(query, parameters);
         }
 
@@ -56,7 +56,7 @@ namespace Final_Year.BusinessLogic
         {
             string query = "SELECT * FROM Work WHERE WorkID = @ID";
             List<SqlParameter> parameters = new List<SqlParameter>();
-            parameters.Add(new SqlParameter("@ID", ID));
+            parameters.Add(new SqlParameter("ID", ID));
             DataTable dt = DBHelper.SelectData(query, parameters);
 
             Work w= new Work();

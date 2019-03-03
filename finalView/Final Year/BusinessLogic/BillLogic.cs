@@ -15,12 +15,12 @@ namespace Final_Year.BusinessLogic
         {
             String query = "Insert into Bill values(@CustomerID,@EmployeeID,@Title,@Amount,@BillDoc,@Status)";
             List<SqlParameter> parameters = new List<SqlParameter>();
-            parameters.Add(new SqlParameter("@CustomerID", bl.CustomerID));
-            parameters.Add(new SqlParameter("@EmployeeID", bl.EmployeeID));
-            parameters.Add(new SqlParameter("@Title", bl.Title));
-            parameters.Add(new SqlParameter("@Amount", bl.Amount));
-            parameters.Add(new SqlParameter("@BillDoc", bl.BillDoc));
-            parameters.Add(new SqlParameter("@Status", bl.Status));
+            parameters.Add(new SqlParameter("CustomerID", bl.CustomerID));
+            parameters.Add(new SqlParameter("EmployeeID", bl.EmployeeID));
+            parameters.Add(new SqlParameter("Title", bl.Title));
+            parameters.Add(new SqlParameter("Amount", bl.Amount));
+            parameters.Add(new SqlParameter("BillDoc", bl.BillDoc));
+            parameters.Add(new SqlParameter("Status", bl.Status));
             return DBHelper.ModifyData(query, parameters);
         }
 
@@ -28,13 +28,13 @@ namespace Final_Year.BusinessLogic
         {
             String query = "Update Bill set CustomerID=@CustomerID,EmployeeID=@EmployeeID,Title=@Title,Amount=@Amount,BillDoc=@BillDoc,Status=@Status where BillID=@BillID";
             List<SqlParameter> parameters = new List<SqlParameter>();
-            parameters.Add(new SqlParameter("@CustomerID", bl.CustomerID));
-            parameters.Add(new SqlParameter("@EmployeeID", bl.EmployeeID));
-            parameters.Add(new SqlParameter("@Title", bl.Title));
-            parameters.Add(new SqlParameter("@Amount", bl.Amount));
-            parameters.Add(new SqlParameter("@BillDoc", bl.BillDoc));
-            parameters.Add(new SqlParameter("@Status", bl.Status));
-            parameters.Add(new SqlParameter("@BillID", bl.BillID));
+            parameters.Add(new SqlParameter("CustomerID", bl.CustomerID));
+            parameters.Add(new SqlParameter("EmployeeID", bl.EmployeeID));
+            parameters.Add(new SqlParameter("Title", bl.Title));
+            parameters.Add(new SqlParameter("Amount", bl.Amount));
+            parameters.Add(new SqlParameter("BillDoc", bl.BillDoc));
+            parameters.Add(new SqlParameter("Status", bl.Status));
+            parameters.Add(new SqlParameter("BillID", bl.BillID));
             return DBHelper.ModifyData(query, parameters);
         }
 
@@ -42,7 +42,7 @@ namespace Final_Year.BusinessLogic
         {
             String query = "Delete from Bill Where BillID=@BillID";
             List<SqlParameter> parameters = new List<SqlParameter>();
-            parameters.Add(new SqlParameter("@BillID", ID));
+            parameters.Add(new SqlParameter("BillID", ID));
             return DBHelper.ModifyData(query, parameters);
         }
 
@@ -50,7 +50,7 @@ namespace Final_Year.BusinessLogic
         {
             string query = "SELECT * FROM Bill WHERE BillID = @ID";
             List<SqlParameter> parameters = new List<SqlParameter>();
-            parameters.Add(new SqlParameter("@ID", ID));
+            parameters.Add(new SqlParameter("ID", ID));
             DataTable dt = DBHelper.SelectData(query, parameters);
 
             Bill bl = new Bill();

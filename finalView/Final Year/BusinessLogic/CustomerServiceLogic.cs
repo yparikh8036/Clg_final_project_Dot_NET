@@ -15,10 +15,10 @@ namespace Final_Year.BusinessLogic
         {
             String query = "Insert into CustomerService values(@CustomerID,@ServiceID,@StartDate,@EndDate)";
             List<SqlParameter> parameters = new List<SqlParameter>();
-            parameters.Add(new SqlParameter("@CustomerID", cs.CustomerID));
-            parameters.Add(new SqlParameter("@ServiceID", cs.ServiceID));
-            parameters.Add(new SqlParameter("@StartDate", cs.StartDate));
-            parameters.Add(new SqlParameter("@EndDate", cs.EndDate));
+            parameters.Add(new SqlParameter("CustomerID", cs.CustomerID));
+            parameters.Add(new SqlParameter("ServiceID", cs.ServiceID));
+            parameters.Add(new SqlParameter("StartDate", cs.StartDate));
+            parameters.Add(new SqlParameter("EndDate", cs.EndDate));
             return DBHelper.ModifyData(query, parameters);
         }
 
@@ -26,11 +26,11 @@ namespace Final_Year.BusinessLogic
         {
             String query = "Update CustomerService set CustomerID=@CustomerID,ServiceID=@ServiceID,StartDate=@StartDate,EndDate=@EndDate where CustomerServiceID=@CustomerServiceID";
             List<SqlParameter> parameters = new List<SqlParameter>();
-            parameters.Add(new SqlParameter("@CustomerID", cs.CustomerID));
-            parameters.Add(new SqlParameter("@ServiceID", cs.ServiceID));
-            parameters.Add(new SqlParameter("@StartDate", cs.StartDate));
-            parameters.Add(new SqlParameter("@EndDate", cs.EndDate));
-            parameters.Add(new SqlParameter("@CustomerServiceID", cs.CustomerServiceID));
+            parameters.Add(new SqlParameter("CustomerID", cs.CustomerID));
+            parameters.Add(new SqlParameter("ServiceID", cs.ServiceID));
+            parameters.Add(new SqlParameter("StartDate", cs.StartDate));
+            parameters.Add(new SqlParameter("EndDate", cs.EndDate));
+            parameters.Add(new SqlParameter("CustomerServiceID", cs.CustomerServiceID));
             return DBHelper.ModifyData(query, parameters);
         }
 
@@ -38,7 +38,7 @@ namespace Final_Year.BusinessLogic
         {
             String query = "Delete from CustomerService Where CustomerServiceID=@CustomerServiceID";
             List<SqlParameter> parameters = new List<SqlParameter>();
-            parameters.Add(new SqlParameter("@CustomerServiceID", ID));
+            parameters.Add(new SqlParameter("CustomerServiceID", ID));
             return DBHelper.ModifyData(query, parameters);
         }
 
@@ -46,7 +46,7 @@ namespace Final_Year.BusinessLogic
         {
             string query = "SELECT * FROM CustomerService WHERE CustomerServiceID = @ID";
             List<SqlParameter> parameters = new List<SqlParameter>();
-            parameters.Add(new SqlParameter("@ID", ID));
+            parameters.Add(new SqlParameter("ID", ID));
             DataTable dt = DBHelper.SelectData(query, parameters);
 
             CustomerService cs = new CustomerService();
@@ -68,15 +68,7 @@ namespace Final_Year.BusinessLogic
         {
             String query = "Select cs.CustomerServiceID,cs.StartDate,cs.EndDate,s.Sname,c.Name,cs.CustomerID from CustomerService cs inner Join Customer c on cs.CustomerID=c.CustomerID inner Join Service s on cs.ServiceID=s.ServiceID";
             List<SqlParameter> parameters = new List<SqlParameter>();
-            // parameters.Add(new SqlParameter("@CustomerID", CustomerID));
             DataTable dt = DBHelper.SelectData(query, parameters);
-            //CustomerService cs = new CustomerService();
-            //cs.CustomerServiceID = Convert.ToInt32(dt.Rows[0]["CustomerServiceID"]);
-            //cs.CustomerID = CustomerID;
-            //cs.ServiceID = Convert.ToInt32(dt.Rows[0]["ServiceID"].ToString());
-            //cs.StartDate = Convert.ToDateTime(dt.Rows[0]["StartDate"].ToString());
-            //cs.EndDate = Convert.ToDateTime(dt.Rows[0]["EndDate"].ToString());
-
             return dt;
         }
 

@@ -15,12 +15,12 @@ namespace Final_Year.BusinessLogic
         {
             String query = "Insert into CustDoc values(@DocTitle,@DocFile,@DocRemarks,@IssueDate,@DueDate,@CustomerID)";
             List<SqlParameter> parameters = new List<SqlParameter>();
-            parameters.Add(new SqlParameter("@DocTitle", cd.DocTitle));
-            parameters.Add(new SqlParameter("@DocFile", cd.DocFile));
-            parameters.Add(new SqlParameter("@DocRemarks", cd.DocRemarks));
-            parameters.Add(new SqlParameter("@IssueDate", cd.IssueDate));
-            parameters.Add(new SqlParameter("@DueDate", cd.DueDate));
-            parameters.Add(new SqlParameter("@CustomerID",cd.CustomerID));
+            parameters.Add(new SqlParameter("DocTitle", cd.DocTitle));
+            parameters.Add(new SqlParameter("DocFile", cd.DocFile));
+            parameters.Add(new SqlParameter("DocRemarks", cd.DocRemarks));
+            parameters.Add(new SqlParameter("IssueDate", cd.IssueDate));
+            parameters.Add(new SqlParameter("DueDate", cd.DueDate));
+            parameters.Add(new SqlParameter("CustomerID",cd.CustomerID));
             return DBHelper.ModifyData(query, parameters);
         }
 
@@ -28,13 +28,13 @@ namespace Final_Year.BusinessLogic
         {
             string query = "UPDATE CustDoc SET DocTitle = @DocTitle, DocFile = @DocFile, DocRemarks = @DocRemarks, IssueDate = @IssueDate,DueDate = @DueDate, CustomerID = @CustomerID where CustDocID=@CustDocID ";
             List<SqlParameter> parameters = new List<SqlParameter>();
-            parameters.Add(new SqlParameter("@DocTitle", cd.DocTitle));
-            parameters.Add(new SqlParameter("@DocFile", cd.DocFile));
-            parameters.Add(new SqlParameter("@DocRemarks", cd.DocRemarks));
-            parameters.Add(new SqlParameter("@IssueDate", cd.IssueDate));
-            parameters.Add(new SqlParameter("@DueDate", cd.DueDate));
-            parameters.Add(new SqlParameter("@CustomerID",cd.CustomerID));
-            parameters.Add(new SqlParameter("@CustDocID", cd.CustDocID));
+            parameters.Add(new SqlParameter("DocTitle", cd.DocTitle));
+            parameters.Add(new SqlParameter("DocFile", cd.DocFile));
+            parameters.Add(new SqlParameter("DocRemarks", cd.DocRemarks));
+            parameters.Add(new SqlParameter("IssueDate", cd.IssueDate));
+            parameters.Add(new SqlParameter("DueDate", cd.DueDate));
+            parameters.Add(new SqlParameter("CustomerID",cd.CustomerID));
+            parameters.Add(new SqlParameter("CustDocID", cd.CustDocID));
 
             return DBHelper.ModifyData(query, parameters);
         }
@@ -43,14 +43,14 @@ namespace Final_Year.BusinessLogic
         {
             String query = "Delete CustDoc where CustDocID=@CustDocID";
             List<SqlParameter> parameters = new List<SqlParameter>();
-            parameters.Add(new SqlParameter("@CustDocID", ID));
+            parameters.Add(new SqlParameter("CustDocID", ID));
             return DBHelper.ModifyData(query, parameters);
         }
         public static CustDoc SelectByPK(int ID)
         {
             string query = "SELECT * FROM CustDoc WHERE CustDocID = @ID";
             List<SqlParameter> parameters = new List<SqlParameter>();
-            parameters.Add(new SqlParameter("@ID", ID));
+            parameters.Add(new SqlParameter("ID", ID));
             DataTable dt = DBHelper.SelectData(query, parameters);
 
             CustDoc cd = new CustDoc();
@@ -69,6 +69,14 @@ namespace Final_Year.BusinessLogic
             string query = "SELECT * FROM CustDoc";
             List<SqlParameter> parameters = new List<SqlParameter>();
             return DBHelper.SelectData(query, parameters);
+        }
+        public static DataTable getCustomerDocuments(int ID)
+        {
+            String query = "SELECT * FROM CustDoc where CustomerID=@CustomerID";
+            List<SqlParameter> parameters = new List<SqlParameter>();
+            parameters.Add(new SqlParameter("CustomerID", ID));
+            DataTable dt = DBHelper.SelectData(query, parameters);
+            return dt;
         }
     }
 }
